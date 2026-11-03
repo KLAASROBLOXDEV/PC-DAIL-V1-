@@ -30,15 +30,15 @@ jobs:
       - name: Install dependencies
         shell: pwsh
         run: |
-          if (Test-Path package-lock.json) { npm ci } else { npm install }
+          npm ci
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
       - name: Rust tests
-        run: cargo test --release --manifest-path src-tauri/Cargo.toml --target x86_64-pc-windows-msvc
+        run: cargo test --locked --release --manifest-path src-tauri/Cargo.toml --target x86_64-pc-windows-msvc
       - name: Build Windows x64
-        run: npm run tauri build -- --target x86_64-pc-windows-msvc
+        run: npm run tauri build -- --target x86_64-pc-windows-msvc -- --locked
       - name: Collect executables and smoke test
         shell: pwsh
         run: |

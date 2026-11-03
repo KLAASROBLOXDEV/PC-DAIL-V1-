@@ -4,7 +4,9 @@ Open-source Windows 10/11 x64 desktop test companion for the CH552G-based PC Dia
 
 ## Status and downloads
 
-Source implementation is provided. A successful Windows build and runtime smoke test are required before claiming binaries are tested. See the Actions tab for build results and Releases for published binaries. Do not treat this README as evidence of a completed build.
+The Windows x64 application and NSIS installer have been built successfully on GitHub Actions. Eight frontend tests, five Rust tests and the desktop process/window smoke test passed. The executable also launched locally and rendered the interface. See [verification details](docs/VERIFICATION.md) for the precise test scope.
+
+[Windows test release and downloads](https://github.com/KLAASROBLOXDEV/PC-DAIL-V1-/releases/tag/v0.1.0-test) · [Build results](https://github.com/KLAASROBLOXDEV/PC-DAIL-V1-/actions)
 
 The release workflow produces:
 - PC-Dial-V1-Test.exe — standalone application executable, requires installed WebView2
@@ -26,14 +28,14 @@ The firmware protocol is unknown. No physical PC Dial is identified, opened or c
 Install Node.js 22+, Rust stable with x86_64-pc-windows-msvc, Visual Studio C++ Build Tools with a Windows SDK, and WebView2. Tauri's official prerequisites: https://v2.tauri.app/start/prerequisites/
 
 ```powershell
-npm install
+npm ci
 npm run typecheck
 npm test
 npm run tauri dev
-npm run tauri build -- --target x86_64-pc-windows-msvc
+npm run tauri build -- --target x86_64-pc-windows-msvc -- --locked
 ```
 
-The first dependency resolution produces package-lock.json and Cargo.lock; retain these when updating dependencies. Release workflow retains resolved locks with its artifacts. Windows builds use official Tauri CLI and NSIS. See https://v2.tauri.app/distribute/windows-installer/.
+Both package-lock.json and src-tauri/Cargo.lock are committed. CI uses npm ci and Cargo's locked dependency resolution. Update and commit the lockfiles deliberately when changing dependencies. Windows builds use official Tauri CLI and NSIS. See https://v2.tauri.app/distribute/windows-installer/.
 
 ## CI and release
 

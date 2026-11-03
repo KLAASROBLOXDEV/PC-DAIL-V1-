@@ -1,10 +1,6 @@
 {
   "identifier": "default",
   "description": "Main local application window",
-  "windows": [
-    "main"
-  ],
-  "permissions": [
-    "core:default"
-  ]
+  "windows": ["main"],
+  "permissions": ["core:default"]
 }

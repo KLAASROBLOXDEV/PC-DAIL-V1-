@@ -1,4 +1,4 @@
-fn shortcut_keys(shortcut: &str) -> Result<Vec<u16>,String> {
+pub(crate) fn shortcut_keys(shortcut: &str) -> Result<Vec<u16>,String> {
  let normalized=shortcut.to_ascii_uppercase();
  let mut parts:Vec<&str>=normalized.split('+').map(str::trim).collect();
  let key=parts.pop().ok_or("Missing key")?;

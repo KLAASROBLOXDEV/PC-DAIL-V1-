@@ -25,12 +25,8 @@
   },
   "bundle": {
     "active": true,
-    "targets": [
-      "nsis"
-    ],
-    "icon": [
-      "icons/icon.ico"
-    ],
+    "targets": ["nsis"],
+    "icon": ["icons/icon.ico"],
     "shortDescription": "PC Dial V1 USB rotary controller test app",
     "windows": {
       "webviewInstallMode": {
